@@ -9,5 +9,8 @@
   "error message'": "Error",
   "cancel": "Cancel",
   "question social distancing": "Did you practise social distancing today?",
-  "question bar title": "Stay in"
+  "question bar title": "Stay in",
+  "question button title": "View Summary",
+  "summary bar title": "Summary",
+  "summary header": "You've been social distancing for 17 days."
 }

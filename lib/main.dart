@@ -6,6 +6,7 @@ import 'auth.dart';
 import 'pages/home.dart';
 import 'pages/localization/localizations.dart';
 import 'pages/login.dart';
+import 'pages/summary.dart';
 
 void main() => runApp(
       ChangeNotifierProvider<AuthService>(
@@ -46,9 +47,12 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (routeSettings) {
           // Use names routes to prevent duplicate code
           if (routeSettings.name == 'first-question') {
-            final int characterId = routeSettings.arguments;
             return MaterialPageRoute(
               builder: (context) => SocialDistancing(),
+            );
+          } else if (routeSettings.name == 'summary') {
+            return MaterialPageRoute(
+              builder: (context) => Summary(),
             );
           }
 

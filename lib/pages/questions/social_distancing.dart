@@ -21,6 +21,12 @@ class _SocialDistancingState extends State<SocialDistancing> {
               AppLocalizations.of(context).translate('question social distancing'),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            SizedBox(height: 20.0),
+            RaisedButton(
+              child: Text(AppLocalizations.of(context).translate('question button title')),
+              onPressed: () {
+                Navigator.pushNamed(context, 'summary');
+              },)
           ],
         ),
       ),
