@@ -55,49 +55,53 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 20.0),
                   RaisedButton(
                     child: Text(AppLocalizations.of(context).translate('login button text')),
-                    onPressed: () async {
-                      // save the input fields
-                      final form = _formKey.currentState;
-                      form.save();
-
-                      if (form.validate()) {
-                        try {
-                          FirebaseUser result =
-                            await Provider.of<AuthService>(context).loginUser(
-                              email: _email, password: _password);
-                          print(result);
-                        } on AuthException catch (error) {
-                          // handle the firebase specific error
-                          return _buildErrorDialog(context, error.message);
-                        } on Exception catch (error) {
-                          // gracefully handle anything else that might happen..
-                          return _buildErrorDialog(context, error.toString());
-                        }
-                        // Jump into the questionnaire
-                        Navigator.pushNamed(context, 'first-question');
-                      }
-                    },
+                    onPressed: validateAndSubmit,
                   ),
-                  SizedBox(height: 20.0),
-                  RaisedButton(
-                    // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
-                    child: Text("Sign-Up"),
-                    onPressed: () async {
-                      Navigator.pushNamed(context, 'first-question');
-                    },
-                  )
+                  // SizedBox(height: 20.0),
+                  // RaisedButton(
+                  //   // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
+                  //   child: Text("Sign-Up"),
+                  //   onPressed: () async {
+                  //     Navigator.pushNamed(context, 'first-question');
+                  //   },
+                  // )
                 ]))));
   }
 
-  Future _buildErrorDialog(BuildContext context, _message) {
+  void validateAndSubmit() async {
+    // save the input fields
+    final form = _formKey.currentState;
+    form.save();
+
+    if (form.validate()) {
+      try {
+        FirebaseUser result =
+          await Provider.of<AuthService>(context).loginUser(
+            email: _email, password: _password);
+        print(result);
+      } on AuthException catch (error) {
+        // handle the firebase specific error
+        return _buildErrorDialog(context, error.message);
+      } on Exception catch (error) {
+        // gracefully handle anything else that might happen..
+        return _buildErrorDialog(context, error.toString());
+      }
+      // Jump into the questionnaire
+      // Navigator.pushNamed(context, 'first-question');
+    }
+  }
+
+  _buildErrorDialog(BuildContext context, _message) {
     return showDialog(
       builder: (context) {
         return AlertDialog(
-          title: Text(AppLocalizations.of(context).translate('error message')),
+          // title: Text(AppLocalizations.of(context).translate('error message')),
+          title: Text("Error"),
           content: Text(_message),
           actions: <Widget>[
             FlatButton(
-                child: Text(AppLocalizations.of(context).translate('cancel')),
+                // child: Text(AppLocalizations.of(context).translate('cancel')),
+                child: Text("Cancel"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 })
