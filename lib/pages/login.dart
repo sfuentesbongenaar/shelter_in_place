@@ -79,6 +79,8 @@ class _LoginPageState extends State<LoginPage> {
           await Provider.of<AuthService>(context).loginUser(
             email: _email, password: _password);
         print(result);
+        // Jump into the questionnaire
+        Navigator.pushNamed(context, 'first-question');
       } on AuthException catch (error) {
         // handle the firebase specific error
         return _buildErrorDialog(context, error.message);
@@ -86,8 +88,6 @@ class _LoginPageState extends State<LoginPage> {
         // gracefully handle anything else that might happen..
         return _buildErrorDialog(context, error.toString());
       }
-      // Jump into the questionnaire
-      // Navigator.pushNamed(context, 'first-question');
     }
   }
 
