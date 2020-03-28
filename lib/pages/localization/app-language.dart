@@ -14,23 +14,4 @@ class AppLanguage extends ChangeNotifier {
     _appLocale = Locale(prefs.getString('language_code'));
     return Null;
   }
-
-
-  void changeLanguage(Locale type) async {
-    var prefs = await SharedPreferences.getInstance();
-    if (_appLocale == type) {
-      return;
-    }
-    if (type == Locale("en")) {
-      _appLocale = Locale("en");
-      await prefs.setString('language_code', 'en');
-    } else if (type == Locale("es"))  {
-      _appLocale = Locale("es");
-      await prefs.setString('language_code', 'es');
-    } else {
-    _appLocale = Locale("nl");
-    await prefs.setString('language_code', 'nl');
-    }
-    notifyListeners();
-  }
 }

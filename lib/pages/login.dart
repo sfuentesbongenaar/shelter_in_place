@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Welcome"),
+          title: Text(AppLocalizations.of(context).translate('welcome')),
         ),
         body: Container(
             padding: EdgeInsets.all(20.0),
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(children: <Widget>[
                   SizedBox(height: 20.0),
                   Text(
-                    'Login info', //This is how it will work with translations: AppLocalizations.of(context).translate('title'),
+                    AppLocalizations.of(context).translate('title'),
                     style: TextStyle(fontSize: 20),
                   ),
                   SizedBox(height: 20.0),
@@ -36,24 +36,24 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter an email address';
+                          return AppLocalizations.of(context).translate('enter email');
                         }
                         return null;
                       },
-                      decoration: InputDecoration(labelText: "Email Address")),
+                      decoration: InputDecoration(labelText: AppLocalizations.of(context).translate('email address'))),
                   TextFormField(
                       onSaved: (value) => _password = value,
                       obscureText: true,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter your password';
+                          return AppLocalizations.of(context).translate('enter password');
                         }
                         return null;
                       },
-                      decoration: InputDecoration(labelText: "Password")),
+                      decoration: InputDecoration(labelText: AppLocalizations.of(context).translate('password'))),
                   SizedBox(height: 20.0),
                   RaisedButton(
-                    child: Text("LOGIN"),
+                    child: Text(AppLocalizations.of(context).translate('login button text')),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         // save the fields..
@@ -74,11 +74,11 @@ class _LoginPageState extends State<LoginPage> {
     return showDialog(
       builder: (context) {
         return AlertDialog(
-          title: Text('Error Message'),
+          title: Text(AppLocalizations.of(context).translate('error message')),
           content: Text(_message),
           actions: <Widget>[
             FlatButton(
-                child: Text('Cancel'),
+                child: Text(AppLocalizations.of(context).translate('cancel')),
                 onPressed: () {
                   Navigator.of(context).pop();
                 })

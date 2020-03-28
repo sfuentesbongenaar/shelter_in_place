@@ -1,4 +1,13 @@
 {
+  "welcome": "Bienvenido",
   "title": "Hola",
-  "Message" : "Esto es Español"
+  "enter email" : "Ingrese su correo",
+  "email address" : "Correo electrónico",
+  "enter password": "Ingrese su contraseña",
+  "password": "Contraseña",
+  "login button text": "INGRESAR",
+  "error message'": "Error",
+  "cancel": "Cancelar",
+  "question social distancing": "TODO",
+  "question bar title": "Quedate en casa"
 }

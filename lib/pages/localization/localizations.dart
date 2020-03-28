@@ -4,12 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/*
-Trying to implement:
-https://medium.com/flutter-community/flutter-internationalization-the-easy-way-using-provider-and-json-c47caa4212b2
-Fallback
-https://flutter.dev/docs/development/accessibility-and-localization/internationalization
- */
 class AppLocalizations {
   final Locale locale;
 
