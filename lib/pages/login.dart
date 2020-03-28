@@ -55,20 +55,18 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 20.0),
                   RaisedButton(
                     child: Text(AppLocalizations.of(context).translate('login button text')),
-                    onPressed: validateAndSubmit,
+                    onPressed: validateLoginSubmission,
                   ),
-                  // SizedBox(height: 20.0),
-                  // RaisedButton(
-                  //   // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
-                  //   child: Text("Sign-Up"),
-                  //   onPressed: () async {
-                  //     Navigator.pushNamed(context, 'first-question');
-                  //   },
-                  // )
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                    // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
+                    child: Text("Sign-Up"),
+                    onPressed: validateSignUpSubmission,
+                  )
                 ]))));
   }
 
-  void validateAndSubmit() async {
+  void validateLoginSubmission() async {
     // save the input fields
     final form = _formKey.currentState;
     form.save();
@@ -77,6 +75,29 @@ class _LoginPageState extends State<LoginPage> {
       try {
         FirebaseUser result =
           await Provider.of<AuthService>(context).loginUser(
+            email: _email, password: _password);
+        print(result);
+        // Jump into the questionnaire
+        Navigator.pushNamed(context, 'first-question');
+      } on AuthException catch (error) {
+        // handle the firebase specific error
+        return _buildErrorDialog(context, error.message);
+      } on Exception catch (error) {
+        // gracefully handle anything else that might happen..
+        return _buildErrorDialog(context, error.toString());
+      }
+    }
+  }
+
+  void validateSignUpSubmission() async {
+    // save the input fields
+    final form = _formKey.currentState;
+    form.save();
+
+    if (form.validate()) {
+      try {
+        FirebaseUser result =
+          await Provider.of<AuthService>(context).createUser(
             email: _email, password: _password);
         print(result);
         // Jump into the questionnaire

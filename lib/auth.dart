@@ -25,16 +25,28 @@ class AuthService with ChangeNotifier {
   }
 
   // wrapping the firebase calls
-  Future createUser(
-      {String firstName,
-        String lastName,
-        String email,
-        String password}) async {}
+  // Future createUser(
+  //     {String firstName,
+  //       String lastName,
+  //       String email,
+  //       String password}) async {}
 
   Future<FirebaseUser> loginUser({String email, String password}) async {
     try {
       AuthResult result = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
+      notifyListeners();
+      FirebaseUser user = result.user;
+      return user;
+    } catch (e) {
+      throw new AuthException(e.code, e.message);
+    }
+  }
+
+  Future<FirebaseUser> createUser({String email, String password}) async {
+    try {
+      AuthResult result = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
       notifyListeners();
       FirebaseUser user = result.user;
       return user;
