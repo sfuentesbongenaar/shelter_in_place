@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 import 'pages/home.dart';
 import 'pages/localization/localizations.dart';
@@ -35,13 +36,21 @@ class MyApp extends StatelessWidget {
         ],
         home: FutureBuilder(
           future: Provider.of<AuthService>(context).getUser(),
-          builder: (context, AsyncSnapshot snapshot) {
+          builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return snapshot.hasData ? HomePage() : LoginPage();
+              // log error to console
+              if (snapshot.error != null) {
+                print("error");
+                return Text(snapshot.error.toString());
+              }
+              // redirect to the proper page, pass the user into the
+              // `HomePage` so we can display the user email in welcome msg
+              return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
             } else {
-              return Container(color: Colors.white);
+              // show loading indicator
+              return LoadingCircle();
             }
-          },
+          }
         ),
         onGenerateRoute: (routeSettings) {
           // Use names routes to prevent duplicate code

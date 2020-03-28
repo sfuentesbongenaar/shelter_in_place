@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../auth.dart';
 import 'localization/localizations.dart';
 
@@ -55,16 +56,34 @@ class _LoginPageState extends State<LoginPage> {
                   RaisedButton(
                     child: Text(AppLocalizations.of(context).translate('login button text')),
                     onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        // save the fields..
-                        final form = _formKey.currentState;
-                        form.save();
+                      // save the input fields
+                      final form = _formKey.currentState;
+                      form.save();
 
-                        await Provider.of<AuthService>(context)
-                            .loginUser(email: _email, password: _password);
+                      if (form.validate()) {
+                        try {
+                          FirebaseUser result =
+                            await Provider.of<AuthService>(context).loginUser(
+                              email: _email, password: _password);
+                          print(result);
+                        } on AuthException catch (error) {
+                          // handle the firebase specific error
+                          return _buildErrorDialog(context, error.message);
+                        } on Exception catch (error) {
+                          // gracefully handle anything else that might happen..
+                          return _buildErrorDialog(context, error.toString());
+                        }
                         // Jump into the questionnaire
                         Navigator.pushNamed(context, 'first-question');
                       }
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                    // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
+                    child: Text("Sign-Up"),
+                    onPressed: () async {
+                      Navigator.pushNamed(context, 'first-question');
                     },
                   )
                 ]))));
