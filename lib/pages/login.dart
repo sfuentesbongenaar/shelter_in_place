@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                      onSaved: (value) => _email = value,
+                      onSaved: (value) => _email = value.trim(),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value.isEmpty) {
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(labelText: AppLocalizations.of(context).translate('email address'))),
                   TextFormField(
-                      onSaved: (value) => _password = value,
+                      onSaved: (value) => _password = value.trim(),
                       obscureText: true,
                       validator: (value) {
                         if (value.isEmpty) {
