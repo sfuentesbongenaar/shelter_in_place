@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
+import 'package:shelter_in_place/pages/util/round_checkbox.dart';
 
 import 'my_bottom_bar.dart';
 import 'my_continue_button.dart';
@@ -24,27 +25,37 @@ class _FeelingsState extends State<Feelings> {
       "Happy",
       "Angry",
       "Depressed",
+      "Joyful",
+      "Surprised",
+      "Excited",
       "Sad",
       "Silly",
-      "Anxious"
+      "Anxious",
+      "Scared",
+      "Calm",
+      "Distracted"
     ];
     feelings.forEach((feeling) => answers.putIfAbsent(feeling, () => false));
 
-    GridView temp = GridView.count(
+    GridView tiles = GridView.count(
         // Create a grid with 2 columns
         crossAxisCount: 2,
+        childAspectRatio: 3,
+        padding: const EdgeInsets.all(4.0),
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
         // Generate 100 widgets that display their index in the List.
         children: feelings.map((String keyName) {
           return GridTile(
-              child: CheckboxListTile(
-            title: Text(AppLocalizations.of(context).translate(keyName)),
+              child: LabeledCheckbox(
+            label: AppLocalizations.of(context).translate(keyName),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             value: answers[keyName],
-            onChanged: (value) {
+            onChanged: (bool newValue) {
               setState(() {
-                answers.update(keyName, (e) => value);
+                answers.update(keyName, (e) => newValue);
               });
             },
-            controlAffinity: ListTileControlAffinity.leading,
           ));
         }).toList());
 
@@ -65,18 +76,22 @@ class _FeelingsState extends State<Feelings> {
               continueButton: continueButton,
             ),
             body: Center(
-              child: Column(children: <Widget>[
-                SizedBox(height: 20.0),
-                Text(
-                    AppLocalizations.of(context).translate('question feelings'),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-                new Flexible(child: temp)
-              ]),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
+                  child: Column(children: <Widget>[
+                    Text(
+                        AppLocalizations.of(context)
+                            .translate('question feelings'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
+                    SizedBox(height: 40.0),
+                    new Flexible(              fit: FlexFit.tight,
+                        child: tiles)
+                  ])),
             )));
   }
 }
