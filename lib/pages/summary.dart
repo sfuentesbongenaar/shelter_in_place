@@ -87,37 +87,37 @@ final List<Object> dates = <Object>[
     'note': 'Today was kinda hard but I made it!'
   },
   {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
   },
     {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
   },
   {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
   },
   {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
   },
   {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
   },
   {
-    'date': 'Sunday, March 24',
+    'date': 'Sunday, March 22',
     'activities': ['read a book', 'took a nap', 'cooked'],
     'emotions': ['calm', 'anxious', 'distracted'],
     'note': 'Today was kinda hard but I made it!'
@@ -144,15 +144,17 @@ class _SummaryState extends State<Summary> {
             Text(AppLocalizations.of(context).translate('summary header'),
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             SizedBox(height: 50.0),
-            ListView.builder(
+            ListView.separated(
                 shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                itemCount: dates.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                      padding: const EdgeInsets.all(8),
                       height: 100,
                       color: Colors.blue[100],
-                      child: Center(child: Text(index.toString())));
+                      child: Center(child: Text('${dates[index]}')));
                 },
+                separatorBuilder: (BuildContext context, int index) => const Divider(),
                 )
           ],
         )));
