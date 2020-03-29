@@ -15,6 +15,17 @@ class Summary extends StatefulWidget {
 }
 
 class _SummaryState extends State<Summary> {
+  int _isSelected = 0;
+  // bool _isOpen = false;
+
+  void _toggleRow(index) {
+    setState(() {
+      _isSelected = index;
+    });
+    print(_isSelected);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +46,7 @@ class _SummaryState extends State<Summary> {
               itemCount: dates.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                    onTap: () {
-                      print("${index} tapped");
-                    },
+                    onTap: () { _toggleRow(index); },
                     child: Container(
                         height: 100,
                         color: Colors.blue[100],
