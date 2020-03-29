@@ -9,6 +9,7 @@ import '../auth.dart';
 
 class HomePage extends StatefulWidget {
   final FirebaseUser currentUser;
+  var userId;
   HomePage(this.currentUser);
 
   @override

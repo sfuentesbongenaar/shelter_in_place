@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService with ChangeNotifier {
   var currentUser;
+  var currentUserId;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<FirebaseUser> getUser() {
@@ -37,7 +38,9 @@ class AuthService with ChangeNotifier {
         .signInWithEmailAndPassword(email: email, password: password);
       notifyListeners();
       FirebaseUser user = result.user;
-      currentUser = user;
+      this.currentUser = user;
+      this.currentUserId = user.uid;
+
       return user;
     } catch (e) {
       throw new AuthException(e.code, e.message);
@@ -50,6 +53,8 @@ class AuthService with ChangeNotifier {
         .createUserWithEmailAndPassword(email: email, password: password);
       notifyListeners();
       FirebaseUser user = result.user;
+      this.currentUser = user;
+      this.currentUserId = user.uid;
       return user;
     } catch (e) {
       throw new AuthException(e.code, e.message);
