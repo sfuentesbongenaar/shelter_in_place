@@ -15,14 +15,13 @@ class Summary extends StatefulWidget {
 }
 
 class _SummaryState extends State<Summary> {
-  int _isSelected = 0;
-  // bool _isOpen = false;
+  bool _isVisible = false;
 
-  void _toggleRow(index) {
+  void showRow() {
     setState(() {
-      _isSelected = index;
+      _isVisible = !_isVisible;
     });
-    print(_isSelected);
+
   }
 
 
@@ -46,11 +45,14 @@ class _SummaryState extends State<Summary> {
               itemCount: dates.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                    onTap: () { _toggleRow(index); },
+                    onTap: () { showRow(); },
                     child: Container(
                         height: 100,
                         color: Colors.blue[100],
-                        child: Center(child: Text('${dates[index]}'))));
+                        child: Center(child: Text('${dates[index]}')),
+                        
+                    )
+                  );
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
