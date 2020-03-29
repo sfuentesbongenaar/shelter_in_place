@@ -6,6 +6,7 @@ import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
 import 'package:shelter_in_place/services/days_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 import 'models/day_model.dart';
 import 'pages/my_overview_chart.dart';
@@ -48,11 +49,20 @@ class MyApp extends StatelessWidget {
             ],
             home: FutureBuilder(
               future: Provider.of<AuthService>(context).getUser(),
-              builder: (context, AsyncSnapshot snapshot) {
+              builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return snapshot.hasData ? NewSummary() : NewSummary();
+                  // // log error to console
+                  // if (snapshot.error != null) {
+                  //   return Text(snapshot.error.toString());
+                  // }
+                  // // redirect to the `HomePage` and pass in the user to
+                  // // display the user's email in welcome msg
+                  // return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
+                  return snapshot.hasData ? LoginPage() : SocialDistancing();
                 } else {
+                  // show loading indicator
                   return Container(color: Colors.white);
+                  // return LoadingCircle();
                 }
               },
             ),
@@ -79,8 +89,12 @@ class MyApp extends StatelessWidget {
                   builder: (context) => NoteForDay(),
                 );
               }else if (routeSettings.name == 'overview') {
+
+                // FirebaseUser user = Provider.of<AuthService>(context).currentUser;
+
                 return MaterialPageRoute(
                   builder: (context) => MyOverviewChart(),
+                  // builder: (context) => HomePage(user),
                 );
               }
               return null;
