@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -9,9 +10,10 @@ import 'package:shelter_in_place/pages/util/my_legend.dart';
 import 'localization/localizations.dart';
 
 class SingleOverviewChart extends StatelessWidget {
-  SingleOverviewChart({@required this.titleKeyname});
+  SingleOverviewChart({@required this.titleKeyname, @required this.colors});
 
   final String titleKeyname;
+  final HashMap<String, Color> colors;
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -73,7 +75,7 @@ class SingleOverviewChart extends StatelessWidget {
             animate: true,
           ), // place your chart here
         ),
-        SimpleLegenda(items: shuffledFeelings.take(7).toList())
+        SimpleLegenda(items: shuffledFeelings.take(7).toList(), height: 130.0,)
       ],
     ));
   }

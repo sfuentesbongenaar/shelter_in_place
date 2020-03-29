@@ -77,8 +77,7 @@ class _FeelingsState extends State<Feelings> {
                           color: Colors.black,
                         )),
                     SizedBox(height: 40.0),
-                    new Flexible(              fit: FlexFit.tight,
-                        child: tiles)
+                    new Flexible(fit: FlexFit.tight, child: tiles)
                   ])),
             )));
   }
