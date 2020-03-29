@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
+import 'package:shelter_in_place/pages/questions/shared_const.dart';
 import 'package:shelter_in_place/pages/util/round_checkbox.dart';
 
 import 'my_bottom_bar.dart';
@@ -21,20 +22,7 @@ class _FeelingsState extends State<Feelings> {
   Widget build(BuildContext context) {
     final dayModel = Provider.of<Day>(context);
 
-    List<String> feelings = [
-      "Happy",
-      "Angry",
-      "Depressed",
-      "Joyful",
-      "Surprised",
-      "Excited",
-      "Sad",
-      "Silly",
-      "Anxious",
-      "Scared",
-      "Calm",
-      "Distracted"
-    ];
+    List<String> feelings = Constants().feelings;
     feelings.forEach((feeling) => answers.putIfAbsent(feeling, () => false));
 
     GridView tiles = GridView.count(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
 import 'package:shelter_in_place/services/days_service.dart';
 import 'auth.dart';
 import 'models/day_model.dart';
-import 'pages/home.dart';
+import 'pages/my_overview_chart.dart';
 import 'pages/localization/localizations.dart';
 import 'pages/login.dart';
 import 'pages/summary.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return snapshot.hasData ? HomePage() : LoginPage();
+                  return snapshot.hasData ? LoginPage() : SocialDistancing();
                 } else {
                   return Container(color: Colors.white);
                 }
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
                 );
               }else if (routeSettings.name == 'overview') {
                 return MaterialPageRoute(
-                  builder: (context) => HomePage(),
+                  builder: (context) => MyOverviewChart(),
                 );
               }
               return null;
