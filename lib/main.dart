@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
                   // // redirect to the `HomePage` and pass in the user to 
                   // // display the user's email in welcome msg
                   // return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
-                  return snapshot.hasData ? LoginPage() : SocialDistancing();
+                  return snapshot.hasData ? SocialDistancing() : LoginPage();
                 } else {
                   // show loading indicator
                   return Container(color: Colors.white);
