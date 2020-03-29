@@ -16,7 +16,7 @@ import 'pages/questions/activities.dart';
 import 'pages/questions/feelings.dart';
 
 void main() => runApp(
-    ChangeNotifierProvider<AuthService>(
+      ChangeNotifierProvider<AuthService>(
           child: MyApp(), create: (context) => AuthService()),
     );
 
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return snapshot.hasData ? NewSummary() : NewSummary();
+                  return snapshot.hasData ? LoginPage() : SocialDistancing();
                 } else {
                   return Container(color: Colors.white);
                 }
@@ -72,13 +72,13 @@ class MyApp extends StatelessWidget {
                 );
               } else if (routeSettings.name == 'summary') {
                 return MaterialPageRoute(
-                  builder: (context) => Summary(),
+                  builder: (context) => NewSummary(),
                 );
               } else if (routeSettings.name == 'fourth-question') {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
                 );
-              }else if (routeSettings.name == 'overview') {
+              } else if (routeSettings.name == 'overview') {
                 return MaterialPageRoute(
                   builder: (context) => MyOverviewChart(),
                 );
