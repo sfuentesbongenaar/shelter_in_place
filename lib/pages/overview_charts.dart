@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
+import 'package:shelter_in_place/pages/questions/shared_const.dart';
 
 import 'my_overview_chart.dart';
 
@@ -57,8 +58,13 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
                         margin: EdgeInsets.fromLTRB(30, 20, 30, 40),
                         child: Column(
                           children: <Widget>[
-                            SingleOverviewChart(titleKeyname: 'Your feelings'),
-                            SingleOverviewChart(titleKeyname: 'Your activities')
+                            SingleOverviewChart(
+                              titleKeyname: 'Your feelings',
+                              colors: Constants().colorsFeelings(),
+                            ),
+                            SingleOverviewChart(
+                                titleKeyname: 'Your activities',
+                                colors: Constants().colorsActivitities())
                           ],
                         )),
                   ],
