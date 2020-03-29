@@ -40,9 +40,9 @@ class _NewSummaryState extends State<NewSummary> {
         id: "first",
         date: DateTime.now(),
         socialDistance: true,
-        feelings: Constants().feelings.take(3).toList(),
-        activities: Constants().activitities.take(3).toList(),
-        note: 'Blabla');
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(4).toList(),
+        note: 'Today was definitely more tough than the last few days as my normal routine has been a little off. It would be great to just go see my parents for a few days, but the city is still on complete lockdown.');
 
     Day day2 = Day(
         id: "second",
@@ -58,7 +58,7 @@ class _NewSummaryState extends State<NewSummary> {
         ),
         body: Container(
           padding: EdgeInsets.all(15.0),
-          child: Column(
+          child: ListView(
             children: <Widget>[SingleDaySummary(day: day1), SingleDaySummary(day: day2)],
           ),
         ));
