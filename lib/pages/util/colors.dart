@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 Color purple = Colors.deepPurple[200];
 Color cyan = Colors.cyan[100];
 Color indigo = Colors.indigo[400];
@@ -18,4 +19,4 @@ Color circleOrange = Colors.orange;
 Color outerCircleOrange = Colors.orange[100];
 Color darkBlueButton = Colors.indigo[900];
 Color powderBlue = Colors.blue[100];
-
+Color lightGrey = const Color(0x78869D);

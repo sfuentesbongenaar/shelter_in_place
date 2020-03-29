@@ -11,14 +11,16 @@ class CustomBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      child: new Row(
+      child: Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CustomBackButton(),
           continueButton,
         ],
-      ),
+      )),
     );
   }
 }
