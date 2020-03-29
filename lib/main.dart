@@ -9,6 +9,7 @@ import 'models/day_model.dart';
 import 'pages/home.dart';
 import 'pages/localization/localizations.dart';
 import 'pages/login.dart';
+import 'pages/summary.dart';
 import 'pages/questions/activities.dart';
 import 'pages/questions/feelings.dart';
 
@@ -67,6 +68,10 @@ class MyApp extends StatelessWidget {
                 return MaterialPageRoute(
                   builder: (context) => Feelings(),
                 );
+              } else if (routeSettings.name == 'summary') {
+                return MaterialPageRoute(
+                  builder: (context) => Summary(),
+                );
               } else if (routeSettings.name == 'fourth-question') {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
@@ -76,7 +81,6 @@ class MyApp extends StatelessWidget {
                   builder: (context) => HomePage(),
                 );
               }
-
               return null;
             }));
   }
