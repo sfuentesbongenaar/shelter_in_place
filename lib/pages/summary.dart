@@ -6,7 +6,13 @@ final List<dynamic> dates = <dynamic>[
   'Saturday, March 21',
   'Friday, March 20',
   'Thursday, March 19',
-  'Wednesday, March 18'
+  'Wednesday, March 18',
+  'Wednesday, March 18',
+  'Wednesday, March 18',
+  'Wednesday, March 18',
+  'Wednesday, March 18',
+  'Wednesday, March 18',
+  'Wednesday, March 18',
 ];
 
 class Summary extends StatefulWidget {
@@ -21,9 +27,7 @@ class _SummaryState extends State<Summary> {
     setState(() {
       _isVisible = !_isVisible;
     });
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +49,22 @@ class _SummaryState extends State<Summary> {
               itemCount: dates.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                    onTap: () { showRow(); },
-                    child: Container(
-                        height: 100,
-                        color: Colors.blue[100],
-                        child: Center(child: Text('${dates[index]}')),
-                        
-                    )
-                  );
+                    onTap: () {
+                      showRow();
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 100,
+                          color: Colors.blue[100],
+                          child: Center(child: Text('${dates[index]}')),
+                        ),
+                        Visibility(
+                          child: Text("Hidden widget!"),
+                          visible: _isVisible,
+                        )
+                      ],
+                    ));
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
