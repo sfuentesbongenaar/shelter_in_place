@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 import 'package:shelter_in_place/pages/questions/my_bottom_bar.dart';
+import 'package:shelter_in_place/pages/questions/shared_const.dart';
 
-import 'my_back_button.dart';
 import 'my_continue_button.dart';
 
 class Activities extends StatefulWidget {
@@ -21,7 +21,7 @@ class _ActivitiesState extends State<Activities> {
   Widget build(BuildContext context) {
     final dayModel = Provider.of<Day>(context);
 
-    List<String> activitities = ["tv", "read", "cook"];
+    List<String> activitities = Constants().activitities;
     activitities
         .forEach((activity) => answers.putIfAbsent(activity, () => false));
 
@@ -68,7 +68,8 @@ class _ActivitiesState extends State<Activities> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ))),
-                new Flexible(child: Column(children: temp))
+              Expanded(
+                  child: ListView(children: temp))
               ]),
             )));
   }
