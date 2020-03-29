@@ -16,6 +16,8 @@ final List<dynamic> dates = <dynamic>[
 ];
 
 class Summary extends StatefulWidget {
+  final String userEmail;
+
   @override
   _SummaryState createState() => _SummaryState();
 }
@@ -34,16 +36,14 @@ class _SummaryState extends State<Summary> {
     return Scaffold(
         appBar: AppBar(
           title:
-              Text("Summary"),
-              // Text(AppLocalizations.of(context).translate('summary bar title')),
+              Text(AppLocalizations.of(context).translate('summary bar title')),
         ),
         body: Center(
             child: Column(
           children: <Widget>[
             SizedBox(height: 50.0),
-            Text("You've been social distancing for 17 days."),
-            // Text(AppLocalizations.of(context).translate('summary header'),
-                // style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+            Text(AppLocalizations.of(context).translate('summary header'),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             SizedBox(height: 50.0),
             ListView.separated(
               shrinkWrap: true,
