@@ -5,6 +5,7 @@ import 'package:shelter_in_place/pages/summary/new_summary.dart';
 import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
+import 'package:shelter_in_place/pages/util/colors.dart';
 import 'package:shelter_in_place/services/days_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
@@ -34,8 +35,8 @@ class MyApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
-            title: 'Flutter Shelter in Place Demo',
-            theme: ThemeData(primarySwatch: Colors.blue),
+            title: 'distINce',
+            theme: ThemeData(fontFamily: 'Gilroy'),
             localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
