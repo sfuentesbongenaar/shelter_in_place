@@ -24,12 +24,7 @@ class _SocialDistancingState extends State<SocialDistancing> {
             child: new Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.account_circle),
-                  onPressed: () {},
-                ),
-              ],
+              children: <Widget>[],
             ),
           ),
           body: Center(

@@ -65,7 +65,7 @@ class _FeelingsState extends State<Feelings> {
             ),
             body: Center(
               child: Padding(
-                  padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
+                  padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
                   child: Column(children: <Widget>[
                     Text(
                         AppLocalizations.of(context)
@@ -74,6 +74,14 @@ class _FeelingsState extends State<Feelings> {
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
+                    SizedBox(height: 20.0),
+                    Text(AppLocalizations.of(context).translate('check all'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w200,
                           color: Colors.black,
                         )),
                     SizedBox(height: 40.0),

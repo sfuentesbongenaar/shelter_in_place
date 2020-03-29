@@ -16,11 +16,11 @@
   "continue button text": "Continue",
   "yes": "Yes",
   "no": "No",
-  "question activities": "What did you do today?",
+  "question activities": "What activities did you do today?",
   "tv": "Watched TV and/or movie",
   "read": "Read a book or a magazine",
   "cook": "Cooked something yummy",
-"exercise": "Exercised at home",
+  "exercise": "Exercised at home",
   "call": "Calles/video chatted with loved ones",
   "videogames": "Played video games",
   "nap": "Took a nap",
@@ -28,7 +28,7 @@
   "walk": "Went for a walk",
   "groceries": "Went to the grocery store",
   "other": "Other",
-  "question feelings": "How do you feel today?",
+  "question feelings": "How were you feeling today?",
   "Happy": "Happy",
   "Angry": "Angry",
   "Depressed": "Depressed",
@@ -51,5 +51,6 @@
   "My notes": "My Notes",
   "streak text": "You've been social distancing for",
   "days": "days",
-  "activities": "activities"
+  "activities": "activities",
+  "check all": "Check all that apply"
 }
