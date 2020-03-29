@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
 import 'package:shelter_in_place/services/days_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 import 'models/day_model.dart';
-import 'pages/home.dart';
+import 'pages/my_overview_chart.dart';
 import 'pages/localization/localizations.dart';
 import 'pages/login.dart';
+import 'pages/summary.dart';
 import 'pages/questions/activities.dart';
 import 'pages/questions/feelings.dart';
 
@@ -48,13 +50,14 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  // log error to console
-                  if (snapshot.error != null) {
-                    return Text(snapshot.error.toString());
-                  }
-                  // redirect to the `HomePage` and pass in the user to 
-                  // display the user's email in welcome msg
-                  return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
+                  // // log error to console
+                  // if (snapshot.error != null) {
+                  //   return Text(snapshot.error.toString());
+                  // }
+                  // // redirect to the `HomePage` and pass in the user to 
+                  // // display the user's email in welcome msg
+                  // return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
+                  return snapshot.hasData ? LoginPage() : SocialDistancing();
                 } else {
                   // show loading indicator
                   return Container(color: Colors.white);
@@ -76,31 +79,27 @@ class MyApp extends StatelessWidget {
                 return MaterialPageRoute(
                   builder: (context) => Feelings(),
                 );
+              } else if (routeSettings.name == 'summary') {
+                return MaterialPageRoute(
+                  builder: (context) => Summary(),
+                );
               } else if (routeSettings.name == 'fourth-question') {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
                 );
               }else if (routeSettings.name == 'overview') {
-
-                // FirebaseUser user = getCurrentUser(context);
-                // final Future<FirebaseUser> result = Provider.of<AuthService>(context).getUser();
                 
-                FirebaseUser user = Provider.of<AuthService>(context).currentUser;
+                // FirebaseUser user = Provider.of<AuthService>(context).currentUser;
 
                 return MaterialPageRoute(
-                  builder: (context) => HomePage(user),
+                  builder: (context) => MyOverviewChart(),
+                  // builder: (context) => HomePage(user),
                 );
               }
-
               return null;
             }));
   }
 }
-
-// FirebaseUser getCurrentUser(context) async {
-//   FirebaseUser user = await Provider.of<AuthService>(context).getUser();
-//   return user;
-// }
 
 // Not being used yet, but nice for when Firebase implementation is in place
 class LoadingCircle extends StatelessWidget {
