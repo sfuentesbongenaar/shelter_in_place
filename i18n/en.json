@@ -17,7 +17,7 @@
   "tv": "Watched TV and/or movie",
   "read": "Read a book or a magazine",
   "cook": "Cooked something yummy",
-  "question feelings": "What did you do today?",
+  "question feelings": "How do you feel today?",
   "Happy": "Happy",
   "Angry": "Angry",
   "Depressed": "Depressed",
@@ -25,5 +25,6 @@
   "Silly": "Silly",
   "Anxious": "Anxious",
   "note today": "Add a note about today",
-  "note today hint": "Today I..."
+  "note today hint": "Today I...",
+  "back": "Back"
 }

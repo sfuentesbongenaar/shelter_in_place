@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
+import 'package:shelter_in_place/pages/questions/my_bottom_bar.dart';
+
+import 'my_back_button.dart';
+import 'my_continue_button.dart';
 
 class Activities extends StatefulWidget {
   @override
@@ -33,9 +37,7 @@ class _ActivitiesState extends State<Activities> {
           controlAffinity: ListTileControlAffinity.leading);
     }).toList();
 
-    RaisedButton continueB = RaisedButton(
-      child:
-          Text(AppLocalizations.of(context).translate('continue button text')),
+    CustomContinueButton continueButton = CustomContinueButton(
       onPressed: () {
         HashMap chosenActivities = answers;
         // Filter out all not chosen answers
@@ -46,20 +48,28 @@ class _ActivitiesState extends State<Activities> {
       },
     );
 
-    return new Scaffold(
-        appBar: AppBar(
-          title: Text(
-              AppLocalizations.of(context).translate('question bar title')),
-        ),
-        body: Center(
-          child: Column(children: <Widget>[
-            Text(
-              AppLocalizations.of(context).translate('question activities'),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return SafeArea(
+        top: true,
+        bottom: false,
+        child: Scaffold(
+            bottomNavigationBar: CustomBottomBar(
+              continueButton: continueButton,
             ),
-            new Flexible(child: Column(children: temp)),
-            continueB
-          ]),
-        ));
+            body: Center(
+              child: Column(children: <Widget>[
+                SizedBox(height: 20.0),
+                Center(
+                    child: Text(
+                        AppLocalizations.of(context)
+                            .translate('question activities'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ))),
+                new Flexible(child: Column(children: temp))
+              ]),
+            )));
   }
 }
