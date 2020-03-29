@@ -68,7 +68,8 @@ class _ActivitiesState extends State<Activities> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ))),
-                new Flexible(child: Column(children: temp))
+              Expanded(
+                  child: ListView(children: temp))
               ]),
             )));
   }

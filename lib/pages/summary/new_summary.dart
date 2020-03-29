@@ -42,7 +42,8 @@ class _NewSummaryState extends State<NewSummary> {
         socialDistance: true,
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(4).toList(),
-        note: 'Today was definitely more tough than the last few days as my normal routine has been a little off. It would be great to just go see my parents for a few days, but the city is still on complete lockdown.');
+        note:
+            'Today was definitely more tough than the last few days as my normal routine has been a little off. It would be great to just go see my parents for a few days, but the city is still on complete lockdown.');
 
     Day day2 = Day(
         id: "second",
@@ -52,15 +53,37 @@ class _NewSummaryState extends State<NewSummary> {
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-    return Scaffold(
-        bottomNavigationBar: CustomBottomBar(
-          continueButton: continueButton,
-        ),
-        body: Container(
-          padding: EdgeInsets.all(15.0),
-          child: ListView(
-            children: <Widget>[SingleDaySummary(day: day1), SingleDaySummary(day: day2)],
-          ),
-        ));
+    String title = AppLocalizations.of(context).translate('streak text') +
+        ' 22 ' +
+        AppLocalizations.of(context).translate('days');
+
+    return SafeArea(
+        top: true,
+        bottom: false,
+        child: Scaffold(
+            bottomNavigationBar: CustomBottomBar(
+              continueButton: continueButton,
+            ),
+            body: Container(
+                padding: EdgeInsets.all(15.0),
+                child: Column(children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Text(title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ))),
+                  Expanded(
+                    child: ListView(
+                      children: <Widget>[
+                        SingleDaySummary(day: day1),
+                        SingleDaySummary(day: day2)
+                      ],
+                    ),
+                  )
+                ]))));
   }
 }

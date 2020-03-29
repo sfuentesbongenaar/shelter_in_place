@@ -59,8 +59,7 @@ class SingleOverviewChart extends StatelessWidget {
     return Center(
         child: Column(
       children: <Widget>[
-        Text(AppLocalizations.of(context)
-            .translate(titleKeyname),
+        Text(AppLocalizations.of(context).translate(titleKeyname),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.0,
@@ -68,14 +67,18 @@ class SingleOverviewChart extends StatelessWidget {
               color: Colors.black,
             )),
         ConstrainedBox(
-          constraints: BoxConstraints.expand(height: 50.0), // adjust the height here
+          constraints: BoxConstraints.expand(height: 50.0),
+          // adjust the height here
           child: StackedHorizontalBarChart(
             _createSampleData(),
             // Disable animations for image tests.
             animate: true,
           ), // place your chart here
         ),
-        SimpleLegenda(items: shuffledFeelings.take(7).toList(), height: 130.0,)
+        SimpleLegenda(
+            items: shuffledFeelings.take(7).toList(),
+            height: 130.0,
+            colors: colors)
       ],
     ));
   }

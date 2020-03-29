@@ -17,7 +17,7 @@ import 'pages/questions/activities.dart';
 import 'pages/questions/feelings.dart';
 
 void main() => runApp(
-    ChangeNotifierProvider<AuthService>(
+      ChangeNotifierProvider<AuthService>(
           child: MyApp(), create: (context) => AuthService()),
     );
 
@@ -51,13 +51,6 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  // // log error to console
-                  // if (snapshot.error != null) {
-                  //   return Text(snapshot.error.toString());
-                  // }
-                  // // redirect to the `HomePage` and pass in the user to
-                  // // display the user's email in welcome msg
-                  // return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
                   return snapshot.hasData ? SocialDistancing() : LoginPage();
                 } else {
                   // show loading indicator
@@ -82,19 +75,15 @@ class MyApp extends StatelessWidget {
                 );
               } else if (routeSettings.name == 'summary') {
                 return MaterialPageRoute(
-                  builder: (context) => Summary(),
+                  builder: (context) => NewSummary(),
                 );
               } else if (routeSettings.name == 'fourth-question') {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
                 );
-              }else if (routeSettings.name == 'overview') {
-
-                // FirebaseUser user = Provider.of<AuthService>(context).currentUser;
-
+              } else if (routeSettings.name == 'overview') {
                 return MaterialPageRoute(
                   builder: (context) => MyOverviewChart(),
-                  // builder: (context) => HomePage(user),
                 );
               }
               return null;
