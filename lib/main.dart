@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return snapshot.hasData ? MyOverviewChart() : MyOverviewChart();
+                  return snapshot.hasData ? LoginPage() : SocialDistancing();
                 } else {
                   return Container(color: Colors.white);
                 }
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
                 );
               }else if (routeSettings.name == 'overview') {
                 return MaterialPageRoute(
-                  builder: (context) => SingleOverviewChart(),
+                  builder: (context) => MyOverviewChart(),
                 );
               }
               return null;
