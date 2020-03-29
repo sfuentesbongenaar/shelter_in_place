@@ -26,7 +26,7 @@ class _NoteForDayState extends State<NoteForDay> {
         print(dayModel.date.toLocal());
         print(dayModel.date.toUtc().toLocal());
         await dayService.addDocument(dayModel.toJson());
-        Navigator.pushNamed(context, 'overview');
+        Navigator.pushNamed(context, 'summary');
       },
     );
 

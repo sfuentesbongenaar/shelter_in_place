@@ -1,127 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 
-final List<Object> dates = <Object>[
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-    {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-    {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-    {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
-  {
-    'date': 'Sunday, March 22',
-    'activities': ['read a book', 'took a nap', 'cooked'],
-    'emotions': ['calm', 'anxious', 'distracted'],
-    'note': 'Today was kinda hard but I made it!'
-  },
+final List<dynamic> dates = <dynamic>[
+  'Sunday, March 22',
+  'Saturday, March 21',
+  'Friday, March 20',
+  'Thursday, March 19',
+  'Wednesday, March 18'
 ];
 
 class Summary extends StatefulWidget {
@@ -145,17 +30,22 @@ class _SummaryState extends State<Summary> {
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             SizedBox(height: 50.0),
             ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(8),
-                itemCount: dates.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      height: 100,
-                      color: Colors.blue[100],
-                      child: Center(child: Text('${dates[index]}')));
-                },
-                separatorBuilder: (BuildContext context, int index) => const Divider(),
-                )
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(8),
+              itemCount: dates.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                    onTap: () {
+                      print("${index} tapped");
+                    },
+                    child: Container(
+                        height: 100,
+                        color: Colors.blue[100],
+                        child: Center(child: Text('${dates[index]}'))));
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+            )
           ],
         )));
   }
