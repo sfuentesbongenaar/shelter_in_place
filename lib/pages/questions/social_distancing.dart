@@ -9,42 +9,74 @@ class SocialDistancing extends StatefulWidget {
 }
 
 class _SocialDistancingState extends State<SocialDistancing> {
-
   @override
   Widget build(BuildContext context) {
     final dayModel = Provider.of<Day>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            AppLocalizations.of(context).translate('question bar title')),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            Text(
-              AppLocalizations.of(context).translate(
-                  'question social distancing'),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return SafeArea(
+        top: true,
+        bottom: false,
+        child: Scaffold(
+          bottomNavigationBar: BottomAppBar(
+            child: new Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.account_circle),
+                  onPressed: () {},
+                ),
+              ],
             ),
-            RaisedButton(
-              child: Text(AppLocalizations.of(context).translate('yes')),
-              onPressed: () {
-                dayModel.socialDistance = true;
-                Navigator.pushNamed(context, 'second-question');
-              },
+          ),
+          body: Center(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 100.0),
+                Center(
+                    child: Text(
+                        AppLocalizations.of(context)
+                            .translate('question social distancing'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ))),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 100, 0, 100),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RaisedButton(
+                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            textColor: Colors.white,
+                            color: Colors.black,
+                            child: Text(
+                                AppLocalizations.of(context).translate('yes')),
+                            onPressed: () {
+                              dayModel.socialDistance = true;
+                              Navigator.pushNamed(context, 'second-question');
+                            },
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ), //hack
+                          RaisedButton(
+                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            textColor: Colors.white,
+                            color: Colors.black,
+                            child: Text(
+                                AppLocalizations.of(context).translate('no')),
+                            onPressed: () {
+                              dayModel.socialDistance = false;
+                              Navigator.pushNamed(context, 'second-question');
+                            },
+                          )
+                        ])),
+              ],
             ),
-            RaisedButton(
-              child: Text(AppLocalizations.of(context).translate('no')),
-              onPressed: () {
-                dayModel.socialDistance = false;
-                Navigator.pushNamed(context, 'second-question');
-              },
-            )
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

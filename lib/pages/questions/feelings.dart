@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 
+import 'my_bottom_bar.dart';
+import 'my_continue_button.dart';
+
 class Feelings extends StatefulWidget {
   @override
   _FeelingsState createState() => _FeelingsState();
@@ -45,9 +48,7 @@ class _FeelingsState extends State<Feelings> {
           ));
         }).toList());
 
-    RaisedButton continueB = RaisedButton(
-      child:
-          Text(AppLocalizations.of(context).translate('continue button text')),
+    CustomContinueButton continueButton = CustomContinueButton(
       onPressed: () {
         HashMap chosenActivities = answers;
         chosenActivities.removeWhere((k, v) => !v);
@@ -56,20 +57,26 @@ class _FeelingsState extends State<Feelings> {
       },
     );
 
-    return new Scaffold(
-        appBar: AppBar(
-          title: Text(
-              AppLocalizations.of(context).translate('question bar title')),
-        ),
-        body: Center(
-          child: Column(children: <Widget>[
-            Text(
-              AppLocalizations.of(context).translate('question feelings'),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return SafeArea(
+        top: true,
+        bottom: false,
+        child: Scaffold(
+            bottomNavigationBar: CustomBottomBar(
+              continueButton: continueButton,
             ),
-            new Flexible(child: temp),
-            continueB
-          ]),
-        ));
+            body: Center(
+              child: Column(children: <Widget>[
+                SizedBox(height: 20.0),
+                Text(
+                    AppLocalizations.of(context).translate('question feelings'),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    )),
+                new Flexible(child: temp)
+              ]),
+            )));
   }
 }
