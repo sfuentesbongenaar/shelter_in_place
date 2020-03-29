@@ -31,6 +31,7 @@ dependencies:
   firebase_database: ^3.0.7
   cloud_firestore: ^0.12.9+5
   charts_flutter: ^0.9.0
+  flutter_svg: ^0.17.3
 
 dev_dependencies:
   flutter_test:
@@ -41,5 +42,10 @@ flutter:
     - i18n/en.json
     - i18n/es.json
     - i18n/nl.json
-
+    - -g-distanceGraphic.svg
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: fonts/Gilroy-Regular.otf
+#          todo add all the font files
   uses-material-design: true
