@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../auth.dart';
 import 'localization/localizations.dart';
 
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                      onSaved: (value) => _email = value,
+                      onSaved: (value) => _email = value.trim(),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value.isEmpty) {
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(labelText: AppLocalizations.of(context).translate('email address'))),
                   TextFormField(
-                      onSaved: (value) => _password = value,
+                      onSaved: (value) => _password = value.trim(),
                       obscureText: true,
                       validator: (value) {
                         if (value.isEmpty) {
@@ -54,31 +55,74 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 20.0),
                   RaisedButton(
                     child: Text(AppLocalizations.of(context).translate('login button text')),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        // save the fields..
-                        final form = _formKey.currentState;
-                        form.save();
-
-                        await Provider.of<AuthService>(context)
-                            .loginUser(email: _email, password: _password);
-                        // Jump into the questionnaire
-                        Navigator.pushNamed(context, 'first-question');
-                      }
-                    },
+                    onPressed: validateLoginSubmission,
+                  ),
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                    // child: Text(AppLocalizations.of(context).translate('sign-up button text')),
+                    child: Text("Sign-Up"),
+                    onPressed: validateSignUpSubmission,
                   )
                 ]))));
   }
 
-  Future _buildErrorDialog(BuildContext context, _message) {
+  void validateLoginSubmission() async {
+    // save the input fields
+    final form = _formKey.currentState;
+    form.save();
+
+    if (form.validate()) {
+      try {
+        FirebaseUser result =
+          await Provider.of<AuthService>(context).loginUser(
+            email: _email, password: _password);
+        print(result);
+        // Jump into the questionnaire
+        Navigator.pushNamed(context, 'first-question');
+      } on AuthException catch (error) {
+        // handle the firebase specific error
+        return _buildErrorDialog(context, error.message);
+      } on Exception catch (error) {
+        // gracefully handle anything else that might happen..
+        return _buildErrorDialog(context, error.toString());
+      }
+    }
+  }
+
+  void validateSignUpSubmission() async {
+    // save the input fields
+    final form = _formKey.currentState;
+    form.save();
+
+    if (form.validate()) {
+      try {
+        FirebaseUser result =
+          await Provider.of<AuthService>(context).createUser(
+            email: _email, password: _password);
+        print(result);
+        // Jump into the questionnaire
+        Navigator.pushNamed(context, 'first-question');
+      } on AuthException catch (error) {
+        // handle the firebase specific error
+        return _buildErrorDialog(context, error.message);
+      } on Exception catch (error) {
+        // gracefully handle anything else that might happen..
+        return _buildErrorDialog(context, error.toString());
+      }
+    }
+  }
+
+  _buildErrorDialog(BuildContext context, _message) {
     return showDialog(
       builder: (context) {
         return AlertDialog(
-          title: Text(AppLocalizations.of(context).translate('error message')),
+          // title: Text(AppLocalizations.of(context).translate('error message')),
+          title: Text("Error"),
           content: Text(_message),
           actions: <Widget>[
             FlatButton(
-                child: Text(AppLocalizations.of(context).translate('cancel')),
+                // child: Text(AppLocalizations.of(context).translate('cancel')),
+                child: Text("Cancel"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 })
