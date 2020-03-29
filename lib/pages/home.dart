@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../auth.dart';
 
@@ -7,6 +8,9 @@ import '../auth.dart';
 // USED FOR TESTING BUT MIGHT NEED logout button
 
 class HomePage extends StatefulWidget {
+  final FirebaseUser currentUser;
+  HomePage(this.currentUser);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,12 +27,12 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             SizedBox(height: 20.0),
             Text(
-              'Home Page Flutter Firebase Content',
+              'Shelter In-Place Coping Home Page',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20.0),
             Text(
-              'Welcome you',
+              'Welcome ${widget.currentUser.email}',
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

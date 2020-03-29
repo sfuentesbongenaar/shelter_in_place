@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
 import 'package:shelter_in_place/services/days_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 import 'models/day_model.dart';
 import 'pages/home.dart';
@@ -45,11 +46,19 @@ class MyApp extends StatelessWidget {
             ],
             home: FutureBuilder(
               future: Provider.of<AuthService>(context).getUser(),
-              builder: (context, AsyncSnapshot snapshot) {
+              builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return snapshot.hasData ? HomePage() : LoginPage();
+                  // log error to console
+                  if (snapshot.error != null) {
+                    return Text(snapshot.error.toString());
+                  }
+                  // redirect to the `HomePage` and pass in the user to 
+                  // display the user's email in welcome msg
+                  return snapshot.hasData ? HomePage(snapshot.data) : LoginPage();
                 } else {
+                  // show loading indicator
                   return Container(color: Colors.white);
+                  // return LoadingCircle();
                 }
               },
             ),
@@ -72,8 +81,14 @@ class MyApp extends StatelessWidget {
                   builder: (context) => NoteForDay(),
                 );
               }else if (routeSettings.name == 'overview') {
+
+                // FirebaseUser user = getCurrentUser(context);
+                // final Future<FirebaseUser> result = Provider.of<AuthService>(context).getUser();
+                
+                FirebaseUser user = Provider.of<AuthService>(context).currentUser;
+
                 return MaterialPageRoute(
-                  builder: (context) => HomePage(),
+                  builder: (context) => HomePage(user),
                 );
               }
 
@@ -81,6 +96,11 @@ class MyApp extends StatelessWidget {
             }));
   }
 }
+
+// FirebaseUser getCurrentUser(context) async {
+//   FirebaseUser user = await Provider.of<AuthService>(context).getUser();
+//   return user;
+// }
 
 // Not being used yet, but nice for when Firebase implementation is in place
 class LoadingCircle extends StatelessWidget {
