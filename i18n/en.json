@@ -12,5 +12,22 @@
   "question bar title": "Stay in",
   "question button title": "View Summary",
   "summary bar title": "Summary",
-  "summary header": "You've been social distancing for 17 days."
+  "summary header": "You've been social distancing for 17 days.",
+  "continue button text": "Continue",
+  "yes": "Yes",
+  "no": "No",
+  "question activities": "What did you do today?",
+  "tv": "Watched TV and/or movie",
+  "read": "Read a book or a magazine",
+  "cook": "Cooked something yummy",
+  "question feelings": "How do you feel today?",
+  "Happy": "Happy",
+  "Angry": "Angry",
+  "Depressed": "Depressed",
+  "Sad": "Sad",
+  "Silly": "Silly",
+  "Anxious": "Anxious",
+  "note today": "Add a note about today",
+  "note today hint": "Today I...",
+  "back": "Back"
 }
