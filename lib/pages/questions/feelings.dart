@@ -7,7 +7,7 @@ import 'package:shelter_in_place/pages/localization/localizations.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
 import 'package:shelter_in_place/pages/util/round_checkbox.dart';
 
-import 'my_bottom_bar.dart';
+import 'question_bottom_bar.dart';
 import 'my_continue_button.dart';
 
 class Feelings extends StatefulWidget {
@@ -60,7 +60,7 @@ class _FeelingsState extends State<Feelings> {
         top: true,
         bottom: false,
         child: Scaffold(
-            bottomNavigationBar: CustomBottomBar(
+            bottomNavigationBar: QuestionBottomBar(
               continueButton: continueButton,
             ),
             body: Center(

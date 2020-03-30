@@ -1,52 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shelter_in_place/pages/summary/new_summary.dart';
+import 'package:shelter_in_place/pages/util/colors.dart';
 
-import '../auth.dart';
-
-//VERBOSE
-// USED FOR TESTING BUT MIGHT NEED logout button
+import 'overview_charts.dart';
 
 class HomePage extends StatefulWidget {
-  final FirebaseUser currentUser;
-  var userId;
-  HomePage(this.currentUser);
+  HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions = <Widget>[
+    new NewSummary(),
+    new MyOverviewChart(),
+    Text(
+      'TODO',
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Flutter Firebase"),
-      ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            Text(
-              'Shelter In-Place Coping Home Page',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20.0),
-            Text(
-              'Welcome ${widget.currentUser.email}',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-            ),
-            SizedBox(height: 20.0),
-            RaisedButton(
-                child: Text("LOGOUT"),
-                onPressed: () async {
-                  await Provider.of<AuthService>(context).logout();
-                })
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar:  BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.data_usage),
+            title: Text('Overview'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: buttonBlue,
+        onTap: _onItemTapped,
       ),
     );
   }

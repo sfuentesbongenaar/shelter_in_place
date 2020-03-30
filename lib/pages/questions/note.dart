@@ -6,7 +6,7 @@ import 'package:shelter_in_place/pages/util/colors.dart';
 import 'package:shelter_in_place/services/days_service.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 
-import 'my_bottom_bar.dart';
+import 'question_bottom_bar.dart';
 
 class NoteForDay extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _NoteForDayState extends State<NoteForDay> {
         top: true,
         bottom: false,
         child: Scaffold(
-          bottomNavigationBar: CustomBottomBar(
+          bottomNavigationBar: QuestionBottomBar(
             continueButton: continueButton,
           ),
           body: Center(

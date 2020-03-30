@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
-import 'package:shelter_in_place/pages/questions/my_bottom_bar.dart';
+import 'package:shelter_in_place/pages/questions/question_bottom_bar.dart';
 import 'package:shelter_in_place/pages/questions/my_continue_button.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
 import 'package:shelter_in_place/pages/summary/single_day_summary.dart';
@@ -22,20 +22,9 @@ final List<dynamic> dates = <dynamic>[
   'Wednesday, March 18',
 ];
 
-class NewSummary extends StatefulWidget {
-  @override
-  _NewSummaryState createState() => _NewSummaryState();
-}
-
-class _NewSummaryState extends State<NewSummary> {
-
+class NewSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CustomContinueButton continueButton = CustomContinueButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'overview');
-      },
-    );
 
     Day day1 = Day(
         id: "first",
@@ -54,7 +43,7 @@ class _NewSummaryState extends State<NewSummary> {
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-Day day3 = Day(
+    Day day3 = Day(
         id: "third",
         date: new DateTime(2020, 3, 27),
         socialDistance: true,
@@ -62,7 +51,7 @@ Day day3 = Day(
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-Day day4 = Day(
+    Day day4 = Day(
         id: "fourth",
         date: new DateTime(2020, 3, 26),
         socialDistance: true,
@@ -70,7 +59,7 @@ Day day4 = Day(
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-Day day5 = Day(
+    Day day5 = Day(
         id: "fifth",
         date: new DateTime(2020, 3, 25),
         socialDistance: true,
@@ -78,7 +67,7 @@ Day day5 = Day(
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-Day day6 = Day(
+    Day day6 = Day(
         id: "sixth",
         date: new DateTime(2020, 3, 24),
         socialDistance: true,
@@ -86,7 +75,7 @@ Day day6 = Day(
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-Day day7 = Day(
+    Day day7 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 23),
         socialDistance: true,
@@ -94,28 +83,28 @@ Day day7 = Day(
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
 
-        Day day8 = Day(
+    Day day8 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 22),
         socialDistance: true,
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
-        Day day9 = Day(
+    Day day9 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 21),
         socialDistance: true,
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
-        Day day10 = Day(
+    Day day10 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 20),
         socialDistance: true,
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(2).toList(),
         note: 'This is the second day');
-        Day day11 = Day(
+    Day day11 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 19),
         socialDistance: true,
@@ -127,14 +116,7 @@ Day day7 = Day(
         ' 22 ' +
         AppLocalizations.of(context).translate('days');
 
-    return SafeArea(
-        top: true,
-        bottom: false,
-        child: Scaffold(
-            bottomNavigationBar: CustomBottomBar(
-              continueButton: continueButton,
-            ),
-            body: Container(
+    return Container(
                 padding: EdgeInsets.all(15.0),
                 child: Column(children: <Widget>[
                   Padding(
@@ -159,10 +141,9 @@ Day day7 = Day(
                         SingleDaySummary(day: day9),
                         SingleDaySummary(day: day10),
                         SingleDaySummary(day: day11),
-
                       ],
                     ),
                   )
-                ]))));
+                ]));
   }
 }

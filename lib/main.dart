@@ -1,19 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:shelter_in_place/pages/summary/new_summary.dart';
+import 'package:shelter_in_place/pages/home.dart';
 import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
-import 'package:shelter_in_place/pages/util/colors.dart';
+import 'package:shelter_in_place/pages/summary/new_summary.dart';
 import 'package:shelter_in_place/services/days_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'auth.dart';
 import 'models/day_model.dart';
-import 'pages/my_overview_chart.dart';
 import 'pages/localization/localizations.dart';
 import 'pages/login.dart';
-import 'pages/summary.dart';
 import 'pages/questions/activities.dart';
 import 'pages/questions/feelings.dart';
 
@@ -52,6 +51,7 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
+//                  return HomePage();
                   return snapshot.hasData ? SocialDistancing() : LoginPage();
                 } else {
                   // show loading indicator
@@ -76,15 +76,11 @@ class MyApp extends StatelessWidget {
                 );
               } else if (routeSettings.name == 'summary') {
                 return MaterialPageRoute(
-                  builder: (context) => NewSummary(),
+                  builder: (context) => HomePage(),
                 );
               } else if (routeSettings.name == 'fourth-question') {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
-                );
-              } else if (routeSettings.name == 'overview') {
-                return MaterialPageRoute(
-                  builder: (context) => MyOverviewChart(),
                 );
               }
               return null;
