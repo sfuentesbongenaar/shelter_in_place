@@ -43,6 +43,9 @@ flutter:
     - i18n/es.json
     - i18n/nl.json
     - -g-distanceGraphic.svg
+    - logo2.png
+    - logo3.png
+    - wordmark3.png
   fonts:
     - family: Gilroy
       fonts:

@@ -37,6 +37,7 @@ class _FeelingsState extends State<Feelings> {
           return GridTile(
               child: LabeledCheckbox(
             label: AppLocalizations.of(context).translate(keyName),
+            
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             value: answers[keyName],
             onChanged: (bool newValue) {
@@ -65,7 +66,7 @@ class _FeelingsState extends State<Feelings> {
             ),
             body: Center(
               child: Padding(
-                  padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                  padding: EdgeInsets.fromLTRB(30, 60, 30, 0),
                   child: Column(children: <Widget>[
                     Text(
                         AppLocalizations.of(context)
@@ -80,7 +81,7 @@ class _FeelingsState extends State<Feelings> {
                     Text(AppLocalizations.of(context).translate('check all'),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.w200,
                           color: Colors.black,
                         )),
