@@ -30,9 +30,8 @@ class _SocialDistancingState extends State<SocialDistancing> {
           body: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 100.0),
-                SvgPicture.asset(assetName,
-                    height: 180.0, semanticsLabel: 'Acme Logo'),
+                SizedBox(height: 200.0),
+                SvgPicture.asset(assetName),
                 SizedBox(height: 20.0),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
@@ -41,14 +40,14 @@ class _SocialDistancingState extends State<SocialDistancing> {
                             .translate('question social distancing'),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 24.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ))),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  answerButton(context, 'yes', dayModel),
+                  yesButton(context, 'yes', dayModel),
                   SizedBox(height: 20.0),
-                  answerButton(context, 'no', dayModel)
+                  noButton(context, 'no', dayModel)
                 ]),
               ],
             ),
@@ -57,16 +56,37 @@ class _SocialDistancingState extends State<SocialDistancing> {
   }
 }
 
-SizedBox answerButton(BuildContext context, String keyname, Day dayModel) {
+SizedBox yesButton(BuildContext context, String keyname, Day dayModel) {
   return new SizedBox(
-      width: 200.0,
+      width: 300.0,
+      height: 60.0,
+      child: RaisedButton(
+        textColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(18.0),
+        ),
+        color: buttonBlue,
+        child: Text(AppLocalizations.of(context).translate(keyname),
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            )),
+        onPressed: () {
+          dayModel.socialDistance = false;
+          Navigator.pushNamed(context, 'second-question');
+        },
+      ));
+}
+SizedBox noButton(BuildContext context, String keyname, Day dayModel) {
+  return new SizedBox(
+      width: 300.0,
       height: 60.0,
       child: RaisedButton(
         textColor: buttonBlue,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(18.0),
         ),
-        color: buttonLightBlue,
+        color: powderBlue,
         child: Text(AppLocalizations.of(context).translate(keyname),
             style: TextStyle(
               fontSize: 20.0,
