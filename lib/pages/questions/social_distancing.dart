@@ -30,7 +30,7 @@ class _SocialDistancingState extends State<SocialDistancing> {
           body: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 200.0),
+                SizedBox(height: 80.0),
                 SvgPicture.asset(assetName),
                 SizedBox(height: 20.0),
                 Padding(

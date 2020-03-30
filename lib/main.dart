@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
               future: Provider.of<AuthService>(context).getUser(),
               builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-//                  return HomePage();
                   return snapshot.hasData ? SocialDistancing() : LoginPage();
                 } else {
                   // show loading indicator
