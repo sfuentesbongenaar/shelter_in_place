@@ -43,11 +43,80 @@ class _NewSummaryState extends State<NewSummary> {
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(4).toList(),
         note:
-            'Today was definitely more tough than the last few days as my normal routine has been a little off. It would be great to just go see my parents for a few days, but the city is still on complete lockdown.');
+            'Today was a pretty good day! I read a book and went for a run by myself.');
 
     Day day2 = Day(
         id: "second",
-        date: DateTime.now(),
+        date: new DateTime(2020, 3, 28),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+Day day3 = Day(
+        id: "third",
+        date: new DateTime(2020, 3, 27),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+Day day4 = Day(
+        id: "fourth",
+        date: new DateTime(2020, 3, 26),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+Day day5 = Day(
+        id: "fifth",
+        date: new DateTime(2020, 3, 25),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+Day day6 = Day(
+        id: "sixth",
+        date: new DateTime(2020, 3, 24),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+Day day7 = Day(
+        id: "seventh",
+        date: new DateTime(2020, 3, 23),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+
+        Day day8 = Day(
+        id: "seventh",
+        date: new DateTime(2020, 3, 22),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+        Day day9 = Day(
+        id: "seventh",
+        date: new DateTime(2020, 3, 21),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+        Day day10 = Day(
+        id: "seventh",
+        date: new DateTime(2020, 3, 20),
+        socialDistance: true,
+        feelings: Constants().feelings.take(6).toList(),
+        activities: Constants().activitities.take(2).toList(),
+        note: 'This is the second day');
+        Day day11 = Day(
+        id: "seventh",
+        date: new DateTime(2020, 3, 19),
         socialDistance: true,
         feelings: Constants().feelings.take(6).toList(),
         activities: Constants().activitities.take(2).toList(),
@@ -80,7 +149,16 @@ class _NewSummaryState extends State<NewSummary> {
                     child: ListView(
                       children: <Widget>[
                         SingleDaySummary(day: day1),
-                        SingleDaySummary(day: day2)
+                        SingleDaySummary(day: day2),
+                        SingleDaySummary(day: day3),
+                        SingleDaySummary(day: day4),
+                        SingleDaySummary(day: day5),
+                        SingleDaySummary(day: day6),
+                        SingleDaySummary(day: day8),
+                        SingleDaySummary(day: day9),
+                        SingleDaySummary(day: day10),
+                        SingleDaySummary(day: day11),
+
                       ],
                     ),
                   )

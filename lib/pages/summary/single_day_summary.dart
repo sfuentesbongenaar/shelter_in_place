@@ -45,33 +45,33 @@ class SingleDaySummary extends StatelessWidget {
           AppLocalizations.of(context).translate('My activities'),
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 12.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.grey[800],
           ),
         ),
         ConstrainedBox(
-            constraints: BoxConstraints.expand(height: 80.0),
+            constraints: BoxConstraints.expand(height: 90.0),
             child: getGrid(activities)),
         Text(
           AppLocalizations.of(context).translate('My mood'),
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 12.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.grey[800],
           ),
         ),
         ConstrainedBox(
-            constraints: BoxConstraints.expand(height: 70.0),
+            constraints: BoxConstraints.expand(height: 90.0),
             child: getGrid(mood)),
         Text(
           AppLocalizations.of(context).translate('My notes'),
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 12.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.grey[800],
           ),
         ),
         Padding(
@@ -82,7 +82,7 @@ class SingleDaySummary extends StatelessWidget {
                   shape: BoxShape.rectangle,
                   borderRadius: new BorderRadius.circular(5.0)),
               child: Padding(
-                  padding: const EdgeInsets.all(8.0), child: Text(day.note)),
+                  padding: const EdgeInsets.all(14.0), child: Text(day.note)),
             )),
       ],
     ));
