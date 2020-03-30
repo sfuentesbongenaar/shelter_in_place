@@ -3,8 +3,8 @@ import 'package:shelter_in_place/pages/questions/my_continue_button.dart';
 
 import 'my_back_button.dart';
 
-class CustomBottomBar extends StatelessWidget {
-  CustomBottomBar({@required this.continueButton});
+class QuestionBottomBar extends StatelessWidget {
+  QuestionBottomBar({@required this.continueButton});
 
   final CustomContinueButton continueButton;
 

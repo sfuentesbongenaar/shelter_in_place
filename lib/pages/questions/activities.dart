@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
-import 'package:shelter_in_place/pages/questions/my_bottom_bar.dart';
+import 'package:shelter_in_place/pages/questions/question_bottom_bar.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
 import 'package:shelter_in_place/pages/util/colors.dart';
 import 'package:shelter_in_place/pages/util/round_checkbox.dart';
@@ -58,7 +58,7 @@ class _ActivitiesState extends State<Activities> {
         top: true,
         bottom: false,
         child: Scaffold(
-            bottomNavigationBar: CustomBottomBar(
+            bottomNavigationBar: QuestionBottomBar(
               continueButton: continueButton,
             ),
             body: Center(
