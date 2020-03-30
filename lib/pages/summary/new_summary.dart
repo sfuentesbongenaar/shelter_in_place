@@ -28,14 +28,15 @@ class NewSummary extends StatefulWidget {
 }
 
 class _NewSummaryState extends State<NewSummary> {
-  CustomContinueButton continueButton = CustomContinueButton(
-    onPressed: () {
-      print('oh');
-    },
-  );
 
   @override
   Widget build(BuildContext context) {
+    CustomContinueButton continueButton = CustomContinueButton(
+      onPressed: () {
+        Navigator.pushNamed(context, 'overview');
+      },
+    );
+
     Day day1 = Day(
         id: "first",
         date: DateTime.now(),

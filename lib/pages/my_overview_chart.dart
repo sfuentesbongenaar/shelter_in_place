@@ -10,10 +10,14 @@ import 'package:shelter_in_place/pages/util/my_legend.dart';
 import 'localization/localizations.dart';
 
 class SingleOverviewChart extends StatelessWidget {
-  SingleOverviewChart({@required this.titleKeyname, @required this.colors});
+  SingleOverviewChart(
+      {@required this.titleKeyname,
+      @required this.colors,
+      @required this.items});
 
   final String titleKeyname;
   final HashMap<String, Color> colors;
+  final List<String> items;
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
@@ -35,27 +39,27 @@ class SingleOverviewChart extends StatelessWidget {
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: desktopSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
       ),
       new charts.Series<OrdinalSales, String>(
         id: 'Tablet',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: tableSalesData,
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
       ),
       new charts.Series<OrdinalSales, String>(
         id: 'Mobile',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: mobileSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.gray.shadeDefault,
       ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> shuffledFeelings = Constants().feelings;
-    shuffledFeelings.shuffle(Random.secure());
     return Center(
         child: Column(
       children: <Widget>[
@@ -76,7 +80,7 @@ class SingleOverviewChart extends StatelessWidget {
           ), // place your chart here
         ),
         SimpleLegenda(
-            items: shuffledFeelings.take(7).toList(),
+            items: items,
             height: 130.0,
             colors: colors)
       ],
