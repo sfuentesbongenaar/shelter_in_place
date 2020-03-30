@@ -6,6 +6,8 @@ import 'package:shelter_in_place/pages/home.dart';
 import 'package:shelter_in_place/pages/overview_charts.dart';
 import 'package:shelter_in_place/pages/questions/note.dart';
 import 'package:shelter_in_place/pages/questions/social_distancing.dart';
+import 'package:shelter_in_place/pages/settings/notification_settings.dart';
+import 'package:shelter_in_place/pages/settings/user_settings.dart';
 import 'package:shelter_in_place/pages/summary/new_summary.dart';
 import 'package:shelter_in_place/services/days_service.dart';
 
@@ -84,6 +86,14 @@ class MyApp extends StatelessWidget {
               } else if (routeSettings.name == 'login') {
                 return MaterialPageRoute(
                   builder: (context) => LoginPage(),
+                );
+              } else if (routeSettings.name == 'user-settings') {
+                return MaterialPageRoute(
+                  builder: (context) => UserSettings(),
+                );
+              } else if (routeSettings.name == 'notification-settings') {
+                return MaterialPageRoute(
+                  builder: (context) => NotificationSettings(),
                 );
               }
               return null;
