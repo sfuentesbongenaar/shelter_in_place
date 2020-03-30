@@ -29,17 +29,18 @@ class _ActivitiesState extends State<Activities> {
 
     List<Widget> activitiesBoxes = activitities.map((String keyName) {
       return Padding(
-          padding: const EdgeInsets.all(10.0),
-      child: LabeledCheckbox(
-        label: AppLocalizations.of(context).translate(keyName),
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        value: answers[keyName],
-        onChanged: (bool newValue) {
-          setState(() {
-            answers.update(keyName, (e) => newValue);
-          });
-        },
-      ));
+          padding: const EdgeInsets.all(15.0),
+          child: LabeledCheckbox(
+            label: AppLocalizations.of(context).translate(keyName),
+            
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            value: answers[keyName],
+            onChanged: (bool newValue) {
+              setState(() {
+                answers.update(keyName, (e) => newValue);
+              });
+            },
+          ));
     }).toList();
 
     CustomContinueButton continueButton = CustomContinueButton(
@@ -65,25 +66,28 @@ class _ActivitiesState extends State<Activities> {
                 SizedBox(height: 20.0),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
-                    child:  Column(children: <Widget>[Text(
-                        AppLocalizations.of(context)
-                            .translate('question activities'),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        )),
-                      SizedBox(height: 20.0),
-                      Text(
-                          AppLocalizations.of(context)
-                              .translate('check all'),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w200,
-                            color: Colors.black,
-                          ))],)),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                            AppLocalizations.of(context)
+                                .translate('question activities'),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            )),
+                        SizedBox(height: 20.0),
+                        Text(
+                            AppLocalizations.of(context).translate('check all'),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w200,
+                              color: Colors.black,
+                            ))
+                      ],
+                    )),
                 Expanded(child: ListView(children: activitiesBoxes))
               ]),
             )));
