@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../auth.dart';
 import 'localization/localizations.dart';
+import 'package:shelter_in_place/pages/util/colors.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,11 +15,22 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _password;
   String _email;
+  final String logoName = 'logo3.png';
+  final String wordmarkName = 'wordmark3.png';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+                      decoration: new BoxDecoration(color: darkBlueButton),
+            child: Column(
+              
+      children: <Widget>[
+         SizedBox(height: 150.0),
+                Image(image: AssetImage('logo2.png'), width: 150,),
+                SizedBox(height: 20.0),
+                Image(image: AssetImage('wordmark3.png'), width: 200,),
+        Container(
             padding: EdgeInsets.all(20.0),
             child: Form(
                 key: _formKey,
@@ -26,6 +38,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 20.0),
                   SizedBox(height: 20.0),
                   TextFormField(
+                      cursorColor: Colors.white,
+                      style: TextStyle(color: Colors.white, fontSize: 22, decorationColor: Colors.white),
+                      
                       onSaved: (value) => _email = value.trim(),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
@@ -36,9 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                       decoration: InputDecoration(
+                          labelStyle: TextStyle(color: Colors.white),
                           labelText: AppLocalizations.of(context)
                               .translate('email address'))),
                   TextFormField(
+                      cursorColor: Colors.white,
+                      style: TextStyle(color: Colors.white, fontSize: 22),
                       onSaved: (value) => _password = value.trim(),
                       obscureText: true,
                       validator: (value) {
@@ -49,18 +67,19 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                       decoration: InputDecoration(
+                          labelStyle: TextStyle(color: Colors.white),
                           labelText: AppLocalizations.of(context)
                               .translate('password'))),
                   SizedBox(height: 40.0),
                   ButtonTheme(
                     child: RaisedButton(
                       padding: EdgeInsets.all(15),
-                      color: Colors.blue,
+                      color: pink,
                       child: Text(
                           AppLocalizations.of(context)
                               .translate('login button text'),
                           style: TextStyle(
-                              color: Colors.white,
+                              color: darkBlueButton,
                               fontWeight: FontWeight.bold,
                               fontSize: 22)),
                       onPressed: validateLoginSubmission,
@@ -75,14 +94,16 @@ class _LoginPageState extends State<LoginPage> {
                       padding: EdgeInsets.all(15),
                       child: Text("Sign Up",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: darkBlueButton,
                               fontWeight: FontWeight.bold,
                               fontSize: 22)),
                       onPressed: validateSignUpSubmission,
-                      color: Colors.blue,
+                      color: yellow,
                     ),
                   )
-                ]))));
+                ])))
+      ],
+    )));
   }
 
   void validateLoginSubmission() async {
