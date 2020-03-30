@@ -19,4 +19,4 @@ Color circleOrange = Colors.orange;
 Color outerCircleOrange = Colors.orange[100];
 Color darkBlueButton = Colors.indigo[900];
 Color powderBlue = Colors.blue[100];
-Color lightGrey = const Color(0x78869D);
+Color lightGrey = Colors.grey[200];

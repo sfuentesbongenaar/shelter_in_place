@@ -15,7 +15,7 @@ class SimpleLegenda extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<LegendElement> legendElements = items.map((String keyName) {
-      return LegendElement(keyName: keyName, fontsize: 11.0, colors: colors);
+      return LegendElement(keyName: keyName, fontsize: 9.0, colors: colors);
     }).toList();
 
     GridView grid = GridView.count(

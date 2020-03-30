@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
@@ -15,6 +17,11 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
   @override
   Widget build(BuildContext context) {
     final dayModel = Provider.of<Day>(context);
+    List<String> shuffledFeelings = Constants().feelings;
+    shuffledFeelings.shuffle(Random.secure());
+
+    List<String> shuffledActivities = Constants().activitities;
+    shuffledActivities.shuffle(Random.secure());
 
     return SafeArea(
         top: true,
@@ -25,10 +32,6 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.account_circle),
-                    onPressed: () {},
-                  ),
                 ],
               ),
             ),
@@ -59,10 +62,12 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
                         child: Column(
                           children: <Widget>[
                             SingleOverviewChart(
+                              items: shuffledFeelings.take(7).toList(),
                               titleKeyname: 'Your feelings',
                               colors: Constants().colorsFeelings(),
                             ),
                             SingleOverviewChart(
+                                items: shuffledActivities.take(7).toList(),
                                 titleKeyname: 'Your activities',
                                 colors: Constants().colorsActivitities())
                           ],
