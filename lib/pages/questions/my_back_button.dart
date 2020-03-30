@@ -6,7 +6,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      textColor: lightGrey,
+      textColor: Colors.grey[500],
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(18.0),
       ),
