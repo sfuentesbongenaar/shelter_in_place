@@ -82,6 +82,10 @@ class MyApp extends StatelessWidget {
                 return MaterialPageRoute(
                   builder: (context) => NoteForDay(),
                 );
+              } else if (routeSettings.name == 'login') {
+                return MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                );
               } else if (routeSettings.name == 'overview') {
                 return MaterialPageRoute(
                   builder: (context) => MyOverviewChart(),

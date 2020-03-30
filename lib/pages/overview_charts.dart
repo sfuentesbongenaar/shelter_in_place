@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../auth.dart';
 
 import 'my_overview_chart.dart';
 
@@ -72,6 +74,13 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
                                 colors: Constants().colorsActivitities())
                           ],
                         )),
+                    SizedBox(height: 20.0),
+                    RaisedButton(
+                        child: Text("Logout"),
+                        onPressed: () async {
+                          await Provider.of<AuthService>(context).logout();
+                          Navigator.pushNamed(context, 'login');
+                        })
                   ],
                 ))));
   }
