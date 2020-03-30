@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shelter_in_place/pages/settings/settings_overview.dart';
 import 'package:shelter_in_place/pages/summary/new_summary.dart';
 import 'package:shelter_in_place/pages/util/colors.dart';
 
@@ -15,11 +16,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    new NewSummary(),
-    new MyOverviewChart(),
-    Text(
-      'TODO',
-    ),
+    NewSummary(),
+    MyOverviewChart(),
+    SettingsOverview(),
   ];
 
   void _onItemTapped(int index) {

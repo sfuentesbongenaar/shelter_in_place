@@ -20,3 +20,4 @@ Color outerCircleOrange = Colors.orange[100];
 Color darkBlueButton = Colors.lightBlue[900];
 Color powderBlue = Colors.blue[100];
 Color lightGrey = Colors.grey[200];
+Color darkSlateBlue = Color.fromRGBO(30, 54, 91, 1);

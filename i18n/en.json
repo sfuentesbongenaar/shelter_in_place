@@ -52,5 +52,8 @@
   "streak text": "You've been social distancing for",
   "days": "days",
   "activities": "activities",
-  "check all": "Check all that apply"
+  "check all": "Check all that apply",
+  "User settings": "User settings",
+  "Notification settings": "Notification settings",
+  "Logout": "Log out"
 }
