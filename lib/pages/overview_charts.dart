@@ -62,7 +62,9 @@ class _MyOverviewChartState extends State<MyOverviewChart> {
                     Card(
                         margin: EdgeInsets.fromLTRB(30, 20, 30, 40),
                         child: Column(
+                          
                           children: <Widget>[
+                            SizedBox(height: 20.0),
                             SingleOverviewChart(
                               items: shuffledFeelings.take(7).toList(),
                               titleKeyname: 'Your feelings',

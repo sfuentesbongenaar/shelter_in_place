@@ -41,14 +41,14 @@ class _NoteForDayState extends State<NoteForDay> {
           body: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 70.0),
+                SizedBox(height: 60.0),
                 Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Text(
                         AppLocalizations.of(context).translate('note today'),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 40.0,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ))),
