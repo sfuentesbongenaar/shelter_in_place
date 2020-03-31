@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:shelter_in_place/models/day_model.dart';
 import 'package:shelter_in_place/pages/localization/localizations.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
+import 'package:shelter_in_place/pages/summary/mood_const.dart';
 import 'package:shelter_in_place/pages/util/colors.dart';
 import 'package:shelter_in_place/pages/util/my_legend_item.dart';
 
@@ -33,59 +34,71 @@ class SingleDaySummary extends StatelessWidget {
     String dayNr = DateFormat('d').format(day.date);
 
     return Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
         child: ExpansionTile(
-      title: Text(
-        dayName + ', ' + monthName + ' ' + dayNr,
-        style: new TextStyle(),
-        textAlign: TextAlign.center,
-      ),
-      children: <Widget>[
-        Divider(),
-        Text(
-          AppLocalizations.of(context).translate('My activities'),
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[800],
+          title: Text(
+            dayName + ', ' + monthName + ' ' + dayNr,
+            style: new TextStyle(
+              color: darkSlateBlue
+            ),
+            textAlign: TextAlign.center,
           ),
-        ),
-        ConstrainedBox(
-            constraints: BoxConstraints.expand(height: 90.0),
-            child: getGrid(activities)),
-        Text(
-          AppLocalizations.of(context).translate('My mood'),
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[800],
+          trailing: Icon(
+            Icons.add,
+            size: 36.0,
+            color: darkSlateBlue
           ),
-        ),
-        ConstrainedBox(
-            constraints: BoxConstraints.expand(height: 90.0),
-            child: getGrid(mood)),
-        Text(
-          AppLocalizations.of(context).translate('My notes'),
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[800],
-          ),
-        ),
-        Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                  color: backgroundGrey,
-                  shape: BoxShape.rectangle,
-                  borderRadius: new BorderRadius.circular(5.0)),
-              child: Padding(
-                  padding: const EdgeInsets.all(14.0), child: Text(day.note)),
-            )),
-      ],
-    ));
+          leading: getMoodIcon(day),
+          children: <Widget>[
+            Divider(),
+            Text(
+              AppLocalizations.of(context).translate('My activities'),
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
+            ),
+            ConstrainedBox(
+                constraints: BoxConstraints.expand(height: 90.0),
+                child: getGrid(activities)),
+            Text(
+              AppLocalizations.of(context).translate('My mood'),
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
+            ),
+            ConstrainedBox(
+                constraints: BoxConstraints.expand(height: 90.0),
+                child: getGrid(mood)),
+            Text(
+              AppLocalizations.of(context).translate('My notes'),
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
+            ),
+            Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      color: backgroundGrey,
+                      shape: BoxShape.rectangle,
+                      borderRadius: new BorderRadius.circular(5.0)),
+                  child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Text(day.note)),
+                )),
+          ],
+        ));
   }
 }
 
@@ -99,4 +112,31 @@ GridView getGrid(List<LegendElement> items) {
       crossAxisSpacing: 4.0,
       // Generate 100 widgets that display their index in the List.
       children: items);
+}
+
+Icon getMoodIcon(Day day) {
+  int points = day.feelings.map((feeling) {
+    return MoodConstants().pointPerFeeling()[feeling];
+  }).reduce((a, b) => a + b);
+
+  IconData data;
+  Color color;
+  if (points == 0) {
+    data = Icons.sentiment_neutral;
+    color = darkSlateBlue;
+  } else if (points < 0 && points > -4) {
+    data = Icons.sentiment_dissatisfied;
+    color = outerCircleOrange;
+  } else if (points < 0) {
+    data = Icons.sentiment_very_dissatisfied;
+    color = circleOrange;
+  } else if (points > 0 && points < 4) {
+    data = Icons.sentiment_satisfied;
+    color = powderBlue;
+  } else {
+    data = Icons.sentiment_very_satisfied;
+    color = red;
+  }
+
+  return Icon(data, size: 36.0, color: color);
 }
