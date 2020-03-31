@@ -15,7 +15,7 @@ class _ActivitiesState extends State<Activities> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> activitities = Constants().activitities;
+    List<String> activitities = Constants.activitities;
     activitities
         .forEach((activity) => answers.putIfAbsent(activity, () => false));
 

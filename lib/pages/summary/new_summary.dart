@@ -26,8 +26,8 @@ final List<dynamic> dates = <dynamic>[
 class NewSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<String> feels = Constants().feelings;
-    List<String> acts = Constants().activitities;
+    List<String> feels = Constants.feelings;
+    List<String> acts = Constants.activitities;
 
     void shuffle() {
       feels.shuffle(Random.secure());
@@ -39,7 +39,7 @@ class NewSummary extends StatelessWidget {
         date: DateTime.now(),
         socialDistance: true,
         feelings: feels.take(6).toList(),
-        activities: Constants().activitities.take(4).toList(),
+        activities: acts.take(5).toList(),
         note:
             'Today was a pretty good day! I read a book and went for a run by myself.');
 
@@ -49,8 +49,8 @@ class NewSummary extends StatelessWidget {
         date: new DateTime(2020, 3, 28),
         socialDistance: true,
         feelings: feels.take(6).toList(),
-        activities: acts.take(2).toList(),
-        note: 'This is the second day');
+        activities: acts.take(4).toList(),
+        note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ');
 
     shuffle();
     Day day3 = Day(
@@ -58,7 +58,7 @@ class NewSummary extends StatelessWidget {
         date: new DateTime(2020, 3, 27),
         socialDistance: true,
         feelings: feels.take(6).toList(),
-        activities: acts.take(2).toList(),
+        activities: acts.take(3).toList(),
         note: 'This is the second day');
 
     shuffle();
@@ -75,7 +75,7 @@ class NewSummary extends StatelessWidget {
         date: new DateTime(2020, 3, 25),
         socialDistance: true,
         feelings: feels.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        activities: acts.take(4).toList(),
         note: 'This is the second day');
 
     shuffle();
@@ -83,8 +83,8 @@ class NewSummary extends StatelessWidget {
         id: "sixth",
         date: new DateTime(2020, 3, 24),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
 
     shuffle();
@@ -92,8 +92,8 @@ class NewSummary extends StatelessWidget {
         id: "seventh",
         date: new DateTime(2020, 3, 23),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
 
     shuffle();
@@ -101,29 +101,29 @@ class NewSummary extends StatelessWidget {
         id: "seventh",
         date: new DateTime(2020, 3, 22),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
     Day day9 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 21),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
     Day day10 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 20),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
     Day day11 = Day(
         id: "seventh",
         date: new DateTime(2020, 3, 19),
         socialDistance: true,
-        feelings: Constants().feelings.take(6).toList(),
-        activities: Constants().activitities.take(2).toList(),
+        feelings: feels.take(6).toList(),
+        activities: acts.take(2).toList(),
         note: 'This is the second day');
 
     String title = AppLocalizations.of(context).translate('streak text') +

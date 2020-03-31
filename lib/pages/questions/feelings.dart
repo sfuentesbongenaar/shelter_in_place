@@ -15,7 +15,7 @@ class _FeelingsState extends State<Feelings> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> feelings = Constants().feelings;
+    List<String> feelings = Constants.feelings;
     feelings.forEach((feeling) => answers.putIfAbsent(feeling, () => false));
 
     GridView tiles = GridView.count(

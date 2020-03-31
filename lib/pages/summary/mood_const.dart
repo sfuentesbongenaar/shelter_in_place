@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shelter_in_place/pages/questions/shared_const.dart';
 
 class MoodConstants {
-  List<String> feelings = Constants().feelings;
+  List<String> feelings = Constants.feelings;
 
   HashMap<String, int> pointPerFeeling() {
     HashMap pointPerFeeling = new HashMap<String, int>();

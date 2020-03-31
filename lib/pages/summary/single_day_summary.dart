@@ -16,8 +16,9 @@ class SingleDaySummary extends StatelessWidget {
   Widget build(BuildContext context) {
     List<LegendElement> activities = day.activities.map((String keyName) {
       return LegendElement(
-        keyName: keyName,
-        fontsize: 8.0,
+        keyName: Constants().shortActivities()[keyName],
+        // Display a shorter activity name
+        fontsize: 9.0,
         colors: Constants().colorsActivitities(),
       );
     }).toList();
@@ -40,63 +41,36 @@ class SingleDaySummary extends StatelessWidget {
         child: ExpansionTile(
           title: Text(
             dayName + ', ' + monthName + ' ' + dayNr,
-            style: new TextStyle(
-              color: darkSlateBlue
-            ),
+            style: new TextStyle(color: darkSlateBlue),
             textAlign: TextAlign.center,
           ),
-          trailing: Icon(
-            Icons.add,
-            size: 36.0,
-            color: darkSlateBlue
-          ),
+          trailing: Icon(Icons.add, size: 36.0, color: darkSlateBlue),
           leading: getMoodIcon(day),
           children: <Widget>[
             Divider(),
-            Text(
-              AppLocalizations.of(context).translate('My activities'),
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[800],
-              ),
-            ),
+            subTitle(context, 'My activities'),
             ConstrainedBox(
-                constraints: BoxConstraints.expand(height: 90.0),
+                constraints: BoxConstraints.expand(height: 80.0),
                 child: getGrid(activities)),
-            Text(
-              AppLocalizations.of(context).translate('My mood'),
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[800],
-              ),
-            ),
+            subTitle(context, 'My mood'),
             ConstrainedBox(
-                constraints: BoxConstraints.expand(height: 90.0),
+                constraints: BoxConstraints.expand(height: 70.0),
                 child: getGrid(mood)),
-            Text(
-              AppLocalizations.of(context).translate('My notes'),
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[800],
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      color: backgroundGrey,
-                      shape: BoxShape.rectangle,
-                      borderRadius: new BorderRadius.circular(5.0)),
+            subTitle(context, 'My notes'),
+            Row(children: <Widget>[
+              Expanded(
                   child: Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: Text(day.note)),
-                )),
+                      padding: const EdgeInsets.all(10.0),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: backgroundGrey,
+                            shape: BoxShape.rectangle,
+                            borderRadius: new BorderRadius.circular(5.0)),
+                        child: Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Text(day.note)),
+                      )))
+            ]),
           ],
         ));
   }
@@ -139,4 +113,19 @@ Icon getMoodIcon(Day day) {
   }
 
   return Icon(data, size: 36.0, color: color);
+}
+
+Widget subTitle(BuildContext context, String keyname) {
+  return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+      child: Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            AppLocalizations.of(context).translate(keyname),
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[800],
+            ),
+          )));
 }
