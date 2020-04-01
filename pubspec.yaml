@@ -51,5 +51,52 @@ flutter:
     - family: Gilroy
       fonts:
         - asset: fonts/Gilroy-Regular.otf
-#          todo add all the font files
+        - asset: fonts/Gilroy-RegularItalic.otf
+          style: italic
+        - asset: fonts/Gilroy-Black.otf
+          weight: 950
+        - asset: fonts/Gilroy-BlackItalic.otf
+          weight: 950
+          style: italic
+        - asset: fonts/Gilroy-Bold.otf
+          weight: 700
+        - asset: fonts/Gilroy-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: fonts/Gilroy-ExtraBold.otf
+          weight: 800
+        - asset: fonts/Gilroy-ExtraBoldItalic.otf
+          weight: 800
+          style: italic
+        - asset: fonts/Gilroy-Heavy.otf
+          weight: 900
+        - asset: fonts/Gilroy-HeavyItalic.otf
+          weight: 900
+          style: italic
+        - asset: fonts/Gilroy-Light.otf
+          weight: 300
+        - asset: fonts/Gilroy-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: fonts/Gilroy-Medium.otf
+          weight: 500
+        - asset: fonts/Gilroy-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: fonts/Gilroy-SemiBold.otf
+          weight: 600
+        - asset: fonts/Gilroy-SemiBoldItalic.otf
+          weight: 600
+          style: italic
+        - asset: fonts/Gilroy-Thin.otf
+          weight: 100
+        - asset: fonts/Gilroy-ThinItalic.otf
+          weight: 100
+          style: italic
+        - asset: fonts/Gilroy-UltraLight.otf
+          weight: 200
+        - asset: fonts/Gilroy-UltraLightItalic.otf
+          weight: 200
+          style: italic
+#          todo add all the font files -> done!
   uses-material-design: true
